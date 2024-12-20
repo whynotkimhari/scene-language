@@ -17,6 +17,7 @@ except:
 
     OPENAI_API_KEY = user_secrets.get_secret("gpt")
     ANTHROPIC_API_KEY = ''
+    GOOGLE_API_KEY = user_secrets.get_secret("GOOGLE_API_KEY")
 
 try:
     import torch
@@ -47,7 +48,7 @@ else:
 print(f'DRY_RUN={DRY_RUN}')
 
 # LLM configs
-LLM_PROVIDER: Literal['gpt', 'claude', 'llama'] = 'gpt'
+LLM_PROVIDER: Literal['gpt', 'claude', 'llama', 'gemini'] = 'gemini'
 TEMPERATURE: float = 0.05
 NUM_COMPLETIONS: int = 1
 MAX_TOKENS: int = 4000

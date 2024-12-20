@@ -5,6 +5,7 @@ import os
 from enum import Enum
 from engine.utils.parsel_utils import setup_gpt
 from engine.utils.claude_client import setup_claude
+from engine.utils.gemini_utils import setup_gemini
 
 try:
     from engine.utils.code_llama_client import setup_llama
@@ -214,7 +215,16 @@ def generate(
     lm_config: Optional[dict] = None,
     skip_cache: bool = False,
 ):
-    if LLM_PROVIDER == "gpt":
+    if LLM_PROVIDER == "gemini":
+        model = setup_gemini()
+        _, results = model.generate(
+            user_prompt=user_prompt,
+            system_prompt=system_prompt,
+            prepend_messages=prepend_messages,
+            **lm_config,
+        )
+        return results
+    elif LLM_PROVIDER == "gpt":
         model = setup_gpt()
         _, results = model.generate(
             user_prompt=user_prompt,
