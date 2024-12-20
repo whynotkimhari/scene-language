@@ -15,8 +15,8 @@ except:
     user_secrets = UserSecretsClient()
     # End my Addon
 
-    OPENAI_API_KEY = user_secrets.get_secret("anthropic")
-    ANTHROPIC_API_KEY = ''
+    OPENAI_API_KEY = ''
+    ANTHROPIC_API_KEY = user_secrets.get_secret("anthropic")
 
 try:
     import torch
