@@ -9,7 +9,13 @@ try:
     from .key import OPENAI_API_KEY, ANTHROPIC_API_KEY
 except:
     print("Warning: No OpenAI or Anthropic keys found.")
-    OPENAI_API_KEY = ''
+
+    # My addon to run on Kaggle
+    from kaggle_secrets import UserSecretsClient
+    user_secrets = UserSecretsClient()
+    # End my Addon
+
+    OPENAI_API_KEY = user_secrets.get_secret("anthropic")
     ANTHROPIC_API_KEY = ''
 
 try:
