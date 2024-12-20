@@ -220,7 +220,6 @@ def generate(
         _, results = model.generate(
             user_prompt=user_prompt,
             system_prompt=system_prompt,
-            prepend_messages=prepend_messages,
             **lm_config,
         )
         return results
