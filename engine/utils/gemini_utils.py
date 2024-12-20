@@ -41,26 +41,7 @@ class GeminiClient:
             print("-----")
 
         # Prepare messages for the API request
-        if isinstance(user_prompt, str):
-            content = [{"type": "text", "text": user_prompt}]
-        elif isinstance(user_prompt, list):
-            content = []
-            for content_item in user_prompt:
-                if content_item['type'] == 'image_url' and os.path.exists(content_item['image_url']):
-                    with open(content_item['image_url'], "rb") as f:
-                        image_data = base64.b64encode(f.read()).decode("utf-8")
-                    content_item = {
-                        'type': 'image',
-                        "source": {
-                            "type": "base64",
-                            "media_type": f'image/{Path(content_item["image_url"]).suffix.removeprefix(".")}',
-                            "data": image_data,
-                        },
-                    }
-                content.append(content_item)
-        else:
-            raise RuntimeError(user_prompt)
-        messages = [{"role": "user", "content": content}]
+        messages = [{"role": "user", "parts": user_prompt}]
 
         cache_key = None
         results = []
