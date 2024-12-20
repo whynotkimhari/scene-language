@@ -72,10 +72,8 @@ class GeminiClient:
                     self.exponential_backoff *= 2
             num_completions -= 1
 
-            content = []
             if response.text:
-                for text_block in response.text:
-                    content.append(text_block.text)
+              content = [response.text]
 
             indented = []
             for c in content:
