@@ -17,7 +17,7 @@ import random
 MODEL_NAME = 'gpt-3.5-turbo-0125'
 # MODEL_NAME = 'gpt-4-turbo-2024-04-09'
 # MODEL_NAME = 'gpt-4o-2024-08-06'
-MAX_TOKENS = 16000
+MAX_TOKENS = 10000
 
 
 # https://github.com/openai/openai-python
